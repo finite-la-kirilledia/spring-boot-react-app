@@ -1,26 +1,23 @@
 package com.finite.service;
 
 import com.finite.model.Student;
+import com.finite.repo.StudentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class StudentService {
 
+    private final StudentRepo studentRepo;
+
+    @Autowired
+    public StudentService(StudentRepo studentRepo) {
+        this.studentRepo = studentRepo;
+    }
+
     public List<Student> getStudents() {
-        return List.of(
-                Student.builder()
-                        .id(UUID.randomUUID())
-                        .firstName("John")
-                        .age(28)
-                        .build(),
-                Student.builder()
-                        .id(UUID.randomUUID())
-                        .firstName("Jack")
-                        .age(22)
-                        .build()
-        );
+        return studentRepo.getStudents();
     }
 }
