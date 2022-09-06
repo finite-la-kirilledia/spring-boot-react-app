@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { getStudents } from './client';
-import { Table } from 'antd'
+import { Table } from 'antd';
+import Container from "./Container";
 
 class App extends Component {
 
@@ -49,12 +50,15 @@ class App extends Component {
 
       return (
 
-        <Table
-          dataSource={students}
-          columns={columns}
-          rowKey='id'
-        />
-        
+        <Container>
+          <Table
+            dataSource={students}
+            columns={columns}
+            rowKey='id'
+            pagination={false}
+          />
+        </Container>
+
       );
     }
 
