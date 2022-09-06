@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { getStudents } from './client'
+import { getStudents } from './client';
+import { Table } from 'antd'
 
 class App extends Component {
 
@@ -15,7 +16,6 @@ class App extends Component {
     getStudents()
       .then(res => res.json()
         .then(students => {
-          console.log(students);
           this.setState({
             students
           });
@@ -28,15 +28,36 @@ class App extends Component {
     const { students } = this.state;
 
     if (students && students.length) {
-      return students.map((student, id) => {
-        return (
-          <div id={id}>
-            <h1>{student.id}</h1>
-            <p>{student.firstName}</p>
-          </div>
-        );
-      })
+
+      const columns = [
+        {
+          title: 'id',
+          dataIndex: 'id',
+          key: 'id'
+        },
+        {
+          title: 'firstName',
+          dataIndex: 'firstName',
+          key: 'firstName'
+        },
+        {
+          title: 'age',
+          dataIndex: 'age',
+          key: 'age'
+        }
+      ];
+
+      return (
+
+        <Table
+          dataSource={students}
+          columns={columns}
+          rowKey='id'
+        />
+        
+      );
     }
+
     return <h1>No students</h1>
   }
 }
