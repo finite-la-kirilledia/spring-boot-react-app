@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { getStudents } from './client';
-import { Table } from 'antd';
+import { Table, Avatar } from 'antd';
 import Container from "./Container";
 
 class App extends Component {
@@ -31,6 +31,15 @@ class App extends Component {
     if (students && students.length) {
 
       const columns = [
+        {
+          title: '',
+          key: 'avatar',
+          render: (text, student) => (
+            <Avatar size='large'>
+              {`${student.firstName.charAt(0).toUpperCase()}`}
+            </Avatar>
+          )
+        },
         {
           title: 'id',
           dataIndex: 'id',
