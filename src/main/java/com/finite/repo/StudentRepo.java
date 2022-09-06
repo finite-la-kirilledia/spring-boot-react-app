@@ -1,7 +1,7 @@
 package com.finite.repo;
 
 import com.finite.model.Student;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -10,14 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
+@AllArgsConstructor
 public class StudentRepo {
 
     private final JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public StudentRepo(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public List<Student> getStudents() {
         return jdbcTemplate.query(
