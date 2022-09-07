@@ -11,6 +11,7 @@ const Footer = (props) => (
                 : null
             }
             <Button
+            onClick={()=> props.handleAddStudentClickEvent()}
                 type='primary'>Add new student +</Button>
         </Container>
     </div>
