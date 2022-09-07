@@ -3,6 +3,7 @@ import { getStudents } from './client';
 import { Table, Avatar, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import Container from "./Container";
+import Footer from "./Footer";
 
 const getLoadingIndicator = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -83,6 +84,7 @@ class App extends Component {
             rowKey='id'
             pagination={false}
           />
+          <Footer numberOfStudents={students.length}></Footer>
         </Container>
 
       );
