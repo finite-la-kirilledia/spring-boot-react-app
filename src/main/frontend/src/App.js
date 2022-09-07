@@ -4,7 +4,8 @@ import { Table, Avatar, Spin, Modal } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import Container from "./Container";
 import Footer from "./Footer";
-import AddStudentForm from './forms/AddStudentForm'
+import AddStudentForm from './forms/AddStudentForm';
+import { addNewStudent } from "./client";
 
 const getLoadingIndicator = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
 

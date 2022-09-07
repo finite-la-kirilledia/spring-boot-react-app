@@ -22,6 +22,13 @@ public class StudentRepo {
         );
     }
 
+    public int createStudent(UUID id, Student student) {
+        return jdbcTemplate.update(
+                "INSERT INTO student (id, first_name, age) VALUES (?, ?, ?)",
+                id, student.getFirstName(), student.getAge()
+        );
+    }
+
     private RowMapper<Student> mapStudentFromDb() {
         return (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("id"));

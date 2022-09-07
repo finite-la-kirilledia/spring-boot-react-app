@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -15,5 +17,14 @@ public class StudentService {
 
     public List<Student> getStudents() {
         return studentRepo.getStudents();
+    }
+
+    public void createStudent(Student student) {
+        createStudent(null, student);
+    }
+
+    public void createStudent(UUID newStudentId, Student student) {
+        UUID id = Optional.ofNullable(newStudentId).orElse(UUID.randomUUID());
+        studentRepo.createStudent(id, student);
     }
 }
