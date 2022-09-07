@@ -6,6 +6,7 @@ import Container from "./Container";
 import Footer from "./Footer";
 import AddStudentForm from './forms/AddStudentForm';
 import { addNewStudent } from "./client";
+import { errorNotification } from "./Notification";
 
 const getLoadingIndicator = () => <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -38,7 +39,10 @@ class App extends Component {
             isFetching: false
           });
         })
-      );
+      ).catch(error => {
+        errorNotification(error.message);
+        this.setState({ isFetching: false });
+      })
   }
 
   render() {
