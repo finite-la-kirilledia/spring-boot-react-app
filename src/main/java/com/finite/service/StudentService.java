@@ -2,6 +2,7 @@ package com.finite.service;
 
 import com.finite.exception.ApiRequestException;
 import com.finite.model.Student;
+import com.finite.model.StudentCourse;
 import com.finite.repo.StudentRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class StudentService {
 
         UUID id = Optional.ofNullable(newStudentId).orElse(UUID.randomUUID());
         studentRepo.createStudent(id, student);
+    }
+
+    public List<StudentCourse> getAllCoursesForStudent(UUID studentId) {
+        return studentRepo.getAllCoursesForStudent(studentId);
     }
 }
