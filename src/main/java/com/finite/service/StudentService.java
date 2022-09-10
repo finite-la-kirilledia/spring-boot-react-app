@@ -1,5 +1,6 @@
 package com.finite.service;
 
+import com.finite.exception.ApiRequestException;
 import com.finite.model.Student;
 import com.finite.repo.StudentRepo;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,10 @@ public class StudentService {
     }
 
     public void createStudent(UUID newStudentId, Student student) {
+        if (studentRepo.isFirstNameTaken(student.getFirstName())) {
+            throw new ApiRequestException(String.format("%s is already taken", student.getFirstName()));
+        }
+
         UUID id = Optional.ofNullable(newStudentId).orElse(UUID.randomUUID());
         studentRepo.createStudent(id, student);
     }

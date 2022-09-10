@@ -22,11 +22,19 @@ public class StudentRepo {
         );
     }
 
-    public int createStudent(UUID id, Student student) {
-        return jdbcTemplate.update(
+    public void createStudent(UUID id, Student student) {
+        jdbcTemplate.update(
                 "INSERT INTO student (id, first_name, age) VALUES (?, ?, ?)",
                 id, student.getFirstName(), student.getAge()
         );
+    }
+
+    public boolean isFirstNameTaken(String firstName) {
+        return Boolean.TRUE.equals(jdbcTemplate.queryForObject(
+                "SELECT EXISTS (SELECT 1 FROM student WHERE first_name = ?)",
+                (resultSet, i) -> resultSet.getBoolean(1),
+                firstName
+        ));
     }
 
     private RowMapper<Student> mapStudentFromDb() {
