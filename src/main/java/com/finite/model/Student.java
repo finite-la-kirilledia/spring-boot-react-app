@@ -3,6 +3,8 @@ package com.finite.model;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
@@ -10,6 +12,10 @@ import java.util.UUID;
 public class Student {
 
     private final UUID id;
+
+    @NotBlank
     private final String firstName;
-    private final int age;
+
+    @NotNull
+    private final Integer age;
 }

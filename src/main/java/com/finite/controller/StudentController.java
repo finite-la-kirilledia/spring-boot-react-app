@@ -5,6 +5,7 @@ import com.finite.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public void createStudent(@RequestBody Student student) {
+    public void createStudent(@RequestBody @Valid Student student) {
         studentService.createStudent(student);
     }
 }
