@@ -1,6 +1,5 @@
-spring:
-  profiles:
-    active: @spring.profiles.active@
+server:
+  port: 5000
 
 datasource:
   jdbc-url: jdbc:postgresql://localhost:5432/students_db
